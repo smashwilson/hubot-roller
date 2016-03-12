@@ -1,7 +1,7 @@
 'use strict';
 
 function Die(count, sides) {
-  this.count = count == null ? 1 : count;
+  this.count = count == null ? one : count;
   this.sides = sides;
 }
 
@@ -16,6 +16,8 @@ function Int(digits) {
 }
 
 exports.Int = Int;
+
+const one = new Int(['1']);
 
 Int.prototype.dump = function () {
   return `Int(${this.value})`

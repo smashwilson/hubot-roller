@@ -12,4 +12,5 @@ describe('die parser', () => {
   };
 
   it('parses a die roll', parsesAs('1d20', 'Die(Int(1), Int(20))'));
+  it('defaults die count to 1', parsesAs('d20', 'Die(Int(1), Int(20))'));
 });
