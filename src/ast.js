@@ -6,3 +6,17 @@ function Die(count, sides) {
 }
 
 exports.Die = Die;
+
+Die.prototype.dump = function () {
+  return `Die(${this.count.dump()}, ${this.sides.dump()})`;
+};
+
+function Int(digits) {
+  this.value = parseInt(digits.join(""), 10);
+}
+
+exports.Int = Int;
+
+Int.prototype.dump = function () {
+  return `Int(${this.value})`
+};
