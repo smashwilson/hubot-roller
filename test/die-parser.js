@@ -16,4 +16,7 @@ describe('die parser', () => {
 
   it('parses addition', parsesAs('1d10+2d6+7',
     'Add(Die(Int(1), Int(10)), Add(Die(Int(2), Int(6)), Int(7)))'));
+
+  it('parses subtraction', parsesAs('1-3+3d4',
+    'Sub(Int(1), Add(Int(3), Die(Int(3), Int(4))))'));
 });
