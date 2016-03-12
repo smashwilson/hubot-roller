@@ -7,6 +7,11 @@
 expression
 = roll
 
+additive
+= left:roll "+" right:additive
+/ left:roll "-" right:additive
+/ roll
+
 roll
 = count:integer ? "d" sides:integer { return new Die(count, sides); }
 
