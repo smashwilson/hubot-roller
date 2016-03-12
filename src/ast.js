@@ -1,25 +1,19 @@
 'use strict';
 
-function Additive(operator, operands) {
+function Additive(left, operator, right) {
+  this.left = left;
   this.operator = operator;
-  this.operands = operands;
+  this.right = right;
 }
 
-Additive.prototype.opWith = function (op, right) {
-  return other.opWithAdditive(this);
-};
-
-Additive.prototype.opWithAdditive = function (left) {
-  //
-};
+exports.Additive = Additive;
 
 Additive.prototype.dump = function () {
-  let subdump = this.operands.map((o) => o.dump()).join(", ");
   let op = 'Unk';
   if (this.operator === '+') op = 'Add';
   if (this.operator === '-') op = 'Sub';
 
-  return `${op}(${subdump})`;
+  return `${op}(${this.left.dump()}, ${this.right.dump()})`;
 };
 
 function Die(count, sides) {
