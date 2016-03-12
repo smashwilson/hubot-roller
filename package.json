@@ -1,0 +1,32 @@
+{
+  "name": "hubot-roll",
+  "version": "0.0.1",
+  "description": "Flexible dice roller for Hubot",
+  "main": "src/index.js",
+  "scripts": {
+    "genparser": "pegjs src/die-parser.pegjs",
+    "test": "npm run genparser && mocha",
+    "prepublish": "npm run genparser"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smashwilson/hubot-roll.git"
+  },
+  "keywords": [
+    "hubot",
+    "dice"
+  ],
+  "author": "Ash Wilson <smashwilson@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smashwilson/hubot-roll/issues"
+  },
+  "homepage": "https://github.com/smashwilson/hubot-roll#readme",
+  "dependencies": {
+    "pegjs": "^0.9.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
