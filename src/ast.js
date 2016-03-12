@@ -9,11 +9,7 @@ function Additive(left, operator, right) {
 exports.Additive = Additive;
 
 Additive.prototype.dump = function () {
-  let op = 'Unk';
-  if (this.operator === '+') op = 'Add';
-  if (this.operator === '-') op = 'Sub';
-
-  return `${op}(${this.left.dump()}, ${this.right.dump()})`;
+  return `(${this.operator} ${this.left.dump()} ${this.right.dump()})`;
 };
 
 function Die(count, sides) {
@@ -24,7 +20,7 @@ function Die(count, sides) {
 exports.Die = Die;
 
 Die.prototype.dump = function () {
-  return `Die(${this.count.dump()}, ${this.sides.dump()})`;
+  return `(d ${this.count.dump()} ${this.sides.dump()})`;
 };
 
 function Int(digits) {
@@ -36,5 +32,5 @@ exports.Int = Int;
 const one = new Int(['1']);
 
 Int.prototype.dump = function () {
-  return `Int(${this.value})`
+  return `(i ${this.value})`
 };
