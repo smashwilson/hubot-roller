@@ -9,7 +9,7 @@ expression
 = additive
 
 additive
-= left:roll [ \t]* op:[+-] [ \t]* right:additive { return new Additive(left, op, right); }
+= left:roll ws op:[+-] ws right:additive { return new Additive(left, op, right); }
 / roll
 
 roll
@@ -18,4 +18,7 @@ roll
 
 integer
 = digits:[0-9]+ { return new Int(digits); }
-/ "(" [ \t]* expr:expression [ \t]* ")" { return expr; }
+/ "(" ws expr:expression ws ")" { return expr; }
+
+ws
+= [ \t\n\r]*
