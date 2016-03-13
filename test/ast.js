@@ -55,5 +55,13 @@ describe('the ast', () => {
 
       expect(report(a)).to.match(/2d4 \[[1-4], [1-4]\] \+ 7 - 3d3 \[[1-3], [1-3], [1-3]\] = \d+/);
     });
+
+    it('uses parenthesis', () => {
+      let d0 = new Die(new Int(['2']), new Int(['4']));
+      let a0 = new Additive(new Int(['1']), '+', new Int(['5']));
+      let d1 = new Die(d0, a0);
+
+      expect(report(d1)).to.match(/\(2d4 \[[1-4], [1-4]\]\)d\(1 \+ 5\) \[[1-6](, [1-6]){0,7}\] = \d+/);
+    });
   });
 });
