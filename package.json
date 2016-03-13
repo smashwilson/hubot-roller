@@ -1,5 +1,5 @@
 {
-  "name": "hubot-roll",
+  "name": "hubot-roller",
   "version": "0.0.1",
   "description": "Flexible dice roller for Hubot",
   "main": "src/index.js",
