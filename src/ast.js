@@ -90,14 +90,6 @@ Int.prototype.dump = function () {
   return `(i ${this.value})`
 };
 
-let valueOf = function (astNode) {
-  if (!astNode.cachedValue) {
-    astNode.cachedValue = astNode.evaluate();
-  }
-
-  return astNode.cachedValue;
-};
-
 const THRESHOLD = 100;
 
 let report = function (astNode) {
