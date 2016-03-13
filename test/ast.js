@@ -63,5 +63,11 @@ describe('the ast', () => {
 
       expect(report(d1)).to.match(/\(2d4 \[[1-4], [1-4]\]\)d\(1 \+ 5\) \[[1-6](, [1-6]){0,7}\] = \d+/);
     });
+
+    it('truncates after 100 rolls', () => {
+      let d = new Die(new Int(['101']), new Int(['1']));
+
+      expect(report(d)).to.equal('\.\.\. = 101 (you jerk)');
+    });
   });
 });

@@ -13,6 +13,8 @@ function Additive(left, operator, right) {
   if (this.operator === '-') op = (l, r) => l - r;
 
   this.value = op(this.left.value, this.right.value);
+
+  this.dieCount = this.left.dieCount + this.right.dieCount;
 }
 
 exports.Additive = Additive;
@@ -40,6 +42,8 @@ function Die(count, sides) {
   }
 
   this.value = this.rolls.reduce((a, b) => a + b);
+
+  this.dieCount = (this.count.dieCount + this.sides.dieCount) + this.count.value;
 }
 
 exports.Die = Die;
@@ -70,7 +74,7 @@ Die.prototype.dump = function () {
 
 function Int(digits) {
   this.value = parseInt(digits.join(""), 10);
-
+  this.dieCount = 0;
   this.isAtom = true;
 }
 
@@ -94,7 +98,13 @@ let valueOf = function (astNode) {
   return astNode.cachedValue;
 };
 
+const THRESHOLD = 100;
+
 let report = function (astNode) {
+  if (astNode.dieCount > THRESHOLD) {
+    return `... = ${astNode.value} (you jerk)`;
+  }
+
   return `${astNode.report()} = ${astNode.value}`;
 };
 
