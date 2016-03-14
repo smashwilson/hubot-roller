@@ -22,4 +22,6 @@ describe('die parser', () => {
 
   it('parses parens', parsesAs('(1 + 2)d(10 - 5)',
     '(d (+ (i 1) (i 2)) (- (i 10) (i 5)))'));
+
+  it('accepts trailing whitespace', parsesAs(' 2d6 ', '(d (i 2) (i 6))'));
 });
