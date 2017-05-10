@@ -27,9 +27,11 @@ Additive.prototype.dump = function () {
   return `(${this.operator} ${this.left.dump()} ${this.right.dump()})`;
 };
 
-function Die(count, sides) {
+function Die(count, sides, hilow, keep) {
   this.count = count == null ? one : count;
   this.sides = sides;
+  this.hilow = hilow;
+  this.keep = keep == null ? count : keep;
 
   this.rolls = [];
 
@@ -41,9 +43,27 @@ function Die(count, sides) {
     this.rolls.push(roll);
   }
 
-  this.value = this.rolls.reduce((a, b) => a + b);
+  this.value = getValue();
 
   this.dieCount = (this.count.dieCount + this.sides.dieCount) + this.count.value;
+}
+
+function getValue () {
+  value = 0;
+  if (this.hilow == null) {
+    value = this.rolls.reduce((a, b) => a + b);
+  } else if (this.hilow == 'l') {
+    sorted = this.rolls.sort(function(a, b) {return b-a});
+    for (var i = 0; i < Math.min(this.keep, this.rolls.size()); i++) {
+      value += this.rolls[i];
+    }
+  } else {
+    sorted = this.rolls.sort();
+    for (var i = 0; i < Math.min(this.keep, this.rolls.size()); i++) {
+      value += this.rolls[i];
+    }
+  }
+  return value;
 }
 
 exports.Die = Die;
