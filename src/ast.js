@@ -53,12 +53,12 @@ function getValue (rolls, hilow, keep) {
   if (hilow == null) {
     value = rolls.reduce((a, b) => a + b);
   } else if (hilow == 'l') {
-    let sorted = rolls.sort(function(a, b) {return b-a});
+    rolls.sort(function(a, b) {return b-a});
     for (var i = 0; i < Math.min(keep, rolls.length); i++) {
       value += rolls[i];
     }
   } else {
-    let sorted = rolls.sort();
+    rolls.sort();
     for (var i = 0; i < Math.min(keep, rolls.length); i++) {
       value += rolls[i];
     }
