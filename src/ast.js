@@ -53,13 +53,13 @@ function getValue (rolls, hilow, keep) {
   if (hilow == null) {
     value = rolls.reduce((a, b) => a + b);
   } else if (hilow == 'l') {
-    sorted = rolls.sort(function(a, b) {return b-a});
-    for (var i = 0; i < Math.min(keep, rolls.size()); i++) {
+    let sorted = rolls.sort(function(a, b) {return b-a});
+    for (var i = 0; i < Math.min(keep, rolls.length); i++) {
       value += rolls[i];
     }
   } else {
-    sorted = rolls.sort();
-    for (var i = 0; i < Math.min(keep, rolls.size()); i++) {
+    let sorted = rolls.sort();
+    for (var i = 0; i < Math.min(keep, rolls.length); i++) {
       value += rolls[i];
     }
   }
@@ -89,7 +89,12 @@ Die.prototype.report = function () {
 };
 
 Die.prototype.dump = function () {
-  return `(d ${this.count.dump()} ${this.sides.dump()})`;
+  if(this.hilow == null) {
+    return `(d ${this.count.dump()} ${this.sides.dump()})`;
+  } else {
+    return `(d ${this.count.dump()} ${this.sides.dump()} ${this.hilow} ${this.keep.dump()})`
+  }
+
 };
 
 function Int(digits) {
