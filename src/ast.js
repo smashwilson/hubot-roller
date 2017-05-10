@@ -43,7 +43,7 @@ function Die(count, sides, hilow, keep) {
     this.rolls.push(roll);
   }
 
-  this.value = getValue(this.rolls, hilow, keep);
+  this.value = getValue(this.rolls, this.hilow, this.keep);
 
   this.dieCount = (this.count.dieCount + this.sides.dieCount) + this.count.value;
 }
@@ -52,14 +52,14 @@ function getValue (rolls, hilow, keep) {
   let value = 0;
   if (hilow == null) {
     value = rolls.reduce((a, b) => a + b);
-  } else if (hilow == 'l') {
-    rolls.sort(function(a, b) {return b-a});
-    for (var i = 0; i < Math.min(keep, rolls.length); i++) {
+  } else if (hilow === 'l') {
+    rolls.sort(function(a, b) {return a-b});
+    for (var i = 0; i < Math.min(keep.value, rolls.length); i++) {
       value += rolls[i];
     }
   } else {
-    rolls.sort();
-    for (var i = 0; i < Math.min(keep, rolls.length); i++) {
+    rolls.sort(function(a, b) {return b-a});
+    for (var i = 0; i < Math.min(keep.value, rolls.length); i++) {
       value += rolls[i];
     }
   }
