@@ -27,9 +27,11 @@ Additive.prototype.dump = function () {
   return `(${this.operator} ${this.left.dump()} ${this.right.dump()})`;
 };
 
-function Die(count, sides) {
+function Die(count, sides, hilow, keep) {
   this.count = count == null ? one : count;
   this.sides = sides;
+  this.hilow = hilow;
+  this.keep = keep == null ? count : keep;
 
   this.rolls = [];
 
@@ -41,9 +43,27 @@ function Die(count, sides) {
     this.rolls.push(roll);
   }
 
-  this.value = this.rolls.reduce((a, b) => a + b);
+  this.value = getValue(this.rolls, this.hilow, this.keep);
 
   this.dieCount = (this.count.dieCount + this.sides.dieCount) + this.count.value;
+}
+
+function getValue (rolls, hilow, keep) {
+  let value = 0;
+  if (hilow == null) {
+    value = rolls.reduce((a, b) => a + b);
+  } else if (hilow === 'l') {
+    rolls.sort(function(a, b) {return a-b});
+    for (var i = 0; i < Math.min(keep.value, rolls.length); i++) {
+      value += rolls[i];
+    }
+  } else {
+    rolls.sort(function(a, b) {return b-a});
+    for (var i = 0; i < Math.min(keep.value, rolls.length); i++) {
+      value += rolls[i];
+    }
+  }
+  return value;
 }
 
 exports.Die = Die;
@@ -69,7 +89,12 @@ Die.prototype.report = function () {
 };
 
 Die.prototype.dump = function () {
-  return `(d ${this.count.dump()} ${this.sides.dump()})`;
+  if(this.hilow == null) {
+    return `(d ${this.count.dump()} ${this.sides.dump()})`;
+  } else {
+    return `(d ${this.count.dump()} ${this.sides.dump()} ${this.hilow} ${this.keep.dump()})`
+  }
+
 };
 
 function Int(digits) {

@@ -13,7 +13,7 @@ additive
 / roll
 
 roll
-= count:integer ? "d" sides:integer { return new Die(count, sides); }
+= count:integer ? "d" sides:integer hilow:[lh]? keep:integer? { return new Die(count, sides, hilow, keep); }
 / integer
 
 integer

@@ -24,4 +24,8 @@ describe('die parser', () => {
     '(d (+ (i 1) (i 2)) (- (i 10) (i 5)))'));
 
   it('accepts trailing whitespace', parsesAs(' 2d6 ', '(d (i 2) (i 6))'));
+
+  it('parses hi keep', parsesAs('1d6h4', '(d (i 1) (i 6) h (i 4))'));
+
+  it('parses low keep', parsesAs('3d12l4', '(d (i 3) (i 12) l (i 4))'));
 });
