@@ -1,5 +1,7 @@
 # Hubot Dice Roller
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/smashwilson/hubot-roller.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/smashwilson/hubot-roll.svg?branch=master)](https://travis-ci.org/smashwilson/hubot-roll)
 
 *hubot roll (1d100)d(4d17 + 5)*
