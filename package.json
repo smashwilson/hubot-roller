@@ -6,7 +6,7 @@
   "scripts": {
     "genparser": "pegjs src/die-parser.pegjs",
     "test": "npm run genparser && mocha",
-    "prepublish": "npm run genparser"
+    "prepare": "npm run genparser"
   },
   "repository": {
     "type": "git",
